@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global.vuePromises = factory());
+	(global.vueMethodsPromise = factory());
 }(this, (function () { 'use strict';
 
 var main = function (Vue) {
@@ -11,3 +11,4 @@ var main = function (Vue) {
 return main;
 
 })));
+//# sourceMappingURL=vue-methods-promise.js.map

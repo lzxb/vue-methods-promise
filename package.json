@@ -1,11 +1,13 @@
 {
-  "name": "vue-promises",
+  "name": "vue-methods-promise",
   "version": "1.0.0",
-  "description": "vue2-promise",
+  "description": "vue-methods-promise",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/rollup -c --watch",
-    "dist": "./node_modules/.bin/rollup -c"
+    "dev": "./node_modules/.bin/gulp",
+    "dist": "./node_modules/.bin/rollup -c",
+    "test": "./node_modules/.bin/ava test/index.js -w",
+    "eslint": "eslint-watch ./node_modules/.bin/eslint **.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,15 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
-    "eslint-config-airbnb-base": "^11.1.0",
-    "eslint-plugin-import": "^2.2.0",
+    "clear": "0.0.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-ava": "^0.16.0",
+    "gulp-eslint": "^3.0.1",
+    "jsdom": "^9.11.0",
     "rollup": "^0.41.4",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-eslint": "^3.0.0",
-    "rollup-watch": "^3.2.2"
+    "rollup-plugin-babel": "^2.7.1"
   }
 }
