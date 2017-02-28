@@ -8,6 +8,7 @@ const ava = require('gulp-ava')
 
 const moduleName = 'vueMethodsPromise'
 const destName = 'vue-methods-promise'
+
 // Test code style
 gulp.task('lint', () => {
   clear()
@@ -16,6 +17,7 @@ gulp.task('lint', () => {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
 })
+
 // Compiler development version
 gulp.task('build:dev', ['lint'], () => {
   return rollup({
