@@ -1,13 +1,10 @@
 {
   "name": "vue-methods-promise",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "vue-methods-promise",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/gulp",
-    "dist": "./node_modules/.bin/rollup -c",
-    "test": "./node_modules/.bin/ava test/index.js -w",
-    "eslint": "eslint-watch ./node_modules/.bin/eslint **.js"
+    "dev": "node node_modules/gulp/bin/gulp"
   },
   "repository": {
     "type": "git",
@@ -32,6 +29,7 @@
     "gulp-eslint": "^3.0.1",
     "jsdom": "^9.11.0",
     "rollup": "^0.41.4",
-    "rollup-plugin-babel": "^2.7.1"
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-uglify": "^1.0.1"
   }
 }
