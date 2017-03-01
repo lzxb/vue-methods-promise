@@ -1,4 +1,6 @@
-  [![npm](https://img.shields.io/npm/v/vue-methods-promise.svg?style=flat-square)](https://www.npmjs.com/package/vue-methods-promise) [![npm](https://img.shields.io/npm/dt/vue-methods-promise.svg?style=flat-square)](https://www.npmjs.com/package/vue-methods-promise)
+[![Build Status](https://travis-ci.org/lzxb/vue-methods-promise.svg?branch=master)](https://travis-ci.org/lzxb/vue-methods-promise)
+[![npm](https://img.shields.io/npm/v/vue-methods-promise.svg?style=flat-square)](https://www.npmjs.com/package/vue-methods-promise) 
+[![npm](https://img.shields.io/npm/dt/vue-methods-promise.svg?style=flat-square)](https://www.npmjs.com/package/vue-methods-promise)
 # vue-methods-promise
 ```
 Let Vue methods support promise
