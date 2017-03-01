@@ -25,9 +25,7 @@ var methodsPromise = (function () {
   if (typeof opt.promise !== 'function') {
     opt.promise = function (mp) {
       mp.catch(function (err) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.log(err);
-        }
+        console.log(err);
       });
     };
   }
