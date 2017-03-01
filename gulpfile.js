@@ -60,4 +60,6 @@ gulp.task('test', ['build:prod'], () => {
 
 gulp.task('default', ['lint', 'build:dev', 'build:prod', 'test'])
 
-gulp.watch(['**/**.js', '!node_modules/**', '!dist/**'], ['default'])
+if (process.env.NODE_ENV !== 'production') {
+  gulp.watch(['**/**.js', '!node_modules/**', '!dist/**'], ['default'])
+}

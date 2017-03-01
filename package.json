@@ -4,10 +4,21 @@
   "description": "Let Vue methods support promise",
   "main": "index.js",
   "scripts": {
-    "dev": "node node_modules/gulp/bin/gulp",
-    "test": "node node_modules/gulp/bin/gulp"
+    "cross-env": "node node_modules/cross-env/bin/cross-env",
+    "gulp": "node node_modules/gulp/bin/gulp",
+    "dev": "npm run gulp",
+    "dist": "npm run cross-env NODE_ENV=production npm run gulp",
+    "test": "npm run cross-env NODE_ENV=production npm run gulp"
   },
-  "Keywords": ["vue", "vue2", "vue-promise", "vue2-promise", "vue-methods-promise", "vuepromise", "vuePromise"],
+  "Keywords": [
+    "vue",
+    "vue2",
+    "vue-promise",
+    "vue2-promise",
+    "vue-methods-promise",
+    "vuepromise",
+    "vuePromise"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lzxb/vue2-promise.git"
@@ -23,6 +34,7 @@
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "clear": "0.0.1",
+    "cross-env": "^3.1.4",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
