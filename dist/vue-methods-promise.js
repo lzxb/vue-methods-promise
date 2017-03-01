@@ -23,7 +23,13 @@ var methodsPromise = (function () {
   }
   // Global hook function
   if (typeof opt.promise !== 'function') {
-    opt.promise = function () {};
+    opt.promise = function (mp) {
+      mp.catch(function (err) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err);
+        }
+      });
+    };
   }
 
   return {
@@ -34,14 +40,14 @@ var methodsPromise = (function () {
 
       if (!Object.prototype.toString.call(methods) === '[object Object]') return;
       Object.keys(methods).forEach(function (k) {
-        var item = methods[k];
-        if (typeof item === 'function' && k !== opt.hook) {
+        var fn = methods[k];
+        if (typeof fn === 'function' && k !== opt.hookName) {
           methods[k] = function () {
             for (var _len = arguments.length, arg = Array(_len), _key = 0; _key < _len; _key++) {
               arg[_key] = arguments[_key];
             }
 
-            var back = item.apply(_this, arg);
+            var back = fn.apply(_this, arg);
             if (isPromise(back)) {
               if (typeof _this[opt.hookName] === 'function') {
                 if (isPromise(_this[opt.hookName](back))) {

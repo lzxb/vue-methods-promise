@@ -1,11 +1,13 @@
 {
   "name": "vue-methods-promise",
   "version": "0.0.1",
-  "description": "vue-methods-promise",
+  "description": "Let Vue methods support promise",
   "main": "index.js",
   "scripts": {
-    "dev": "node node_modules/gulp/bin/gulp"
+    "dev": "node node_modules/gulp/bin/gulp",
+    "test": "node node_modules/gulp/bin/gulp"
   },
+  "Keywords": ["vue", "vue2", "vue-promise", "vue2-promise", "vue-methods-promise", "vuepromise", "vuePromise"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lzxb/vue2-promise.git"

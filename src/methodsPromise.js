@@ -7,7 +7,13 @@ export default (opt = {}) => {
   }
   // Global hook function
   if (typeof opt.promise !== 'function') {
-    opt.promise = () => {}
+    opt.promise = (mp) => {
+      mp.catch((err) => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
+      })
+    }
   }
 
   return {
@@ -15,10 +21,10 @@ export default (opt = {}) => {
       const { methods } = this.$options
       if (!Object.prototype.toString.call(methods) === '[object Object]') return
       Object.keys(methods).forEach((k) => {
-        let item = methods[k]
-        if (typeof item === 'function' && k !== opt.hook) {
+        let fn = methods[k]
+        if (typeof fn === 'function' && k !== opt.hookName) {
           methods[k] = (...arg) => {
-            let back = item.apply(this, arg)
+            let back = fn.apply(this, arg)
             if (isPromise(back)) {
               if (typeof this[opt.hookName] === 'function') {
                 if (isPromise(this[opt.hookName](back))) {

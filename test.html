@@ -1,11 +1,12 @@
-# vue-methods-promise
-```
-Let Vue methods support promise
-```
+<!DOCTYPE html>
+<html lang="en">
 
-### Usage
--  Page introduction
-```html
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
   <div id="app"></div>
   <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
   <script src="./dist/vue-methods-promise.js"></script>
@@ -14,6 +15,9 @@ Let Vue methods support promise
       hookName: '$promise', // Component default hook name
       promise: function (mp) { // Promise callback default Unified processing error
         mp
+          .then(function () {
+            console.log('ok')
+          })
           .catch(function (err) {
             console.log(mp)
           })
@@ -28,34 +32,13 @@ Let Vue methods support promise
       methods: { // 
         init: function () {
           return new Promise(function (resolve, reject) {
-            setTimeout(reject, 500)
-          })
-        },
-        $promise (mp) { // Optional parameters
-          return mp.then(function () {
-            // 
+            setTimeout(resolve, 500)
           })
         }
       }
     })
 
   </script>
-```
-- npm
-```
-npm install --save vue-methods-promise
-```
-```javascript
-import Vue from 'vue'
-import vueMethodsPromise from 'vue-methods-promise'
+</body>
 
-Vue.use(vueMethodsPromise, {
-  hookName: '$promise', // Component default hook name
-  promise: (mp) => { // Promise callback default Unified processing error
-    mp
-      .catch(function (err) {
-        console.log(mp)
-      })
-  }
-})
-```
+</html>
