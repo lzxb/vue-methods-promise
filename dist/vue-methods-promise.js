@@ -48,13 +48,16 @@ var methodsPromise = (function () {
             var back = fn.apply(_this, arg);
             if (isPromise(back)) {
               if (typeof _this[opt.hookName] === 'function') {
-                if (isPromise(_this[opt.hookName](back))) {
-                  opt.promise.call(_this, back);
+                var hookBack = _this[opt.hookName](back);
+                if (isPromise(hookBack)) {
+                  return opt.promise.call(_this, back);
                 }
+                return hookBack;
               } else {
-                opt.promise.call(_this, back);
+                return opt.promise.call(_this, back);
               }
             }
+            return back;
           };
         }
       });

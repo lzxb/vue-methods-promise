@@ -152,3 +152,22 @@ test('Component hook not loop', (t) => {
     })
 })
 
+test('Vue methods default return value', (t) => {
+  return browser().then(({ Vue, vueMethodsPromise }) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+      vueMethodsPromise(Vue)
+      return new Vue({
+        el: '#app',
+        mounted () {
+          if (this.count() === 100) return resolve()
+        },
+        methods: {
+          count () {
+            return 100
+          }
+        }
+      })
+    })
+  })
+})

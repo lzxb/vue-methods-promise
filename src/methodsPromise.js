@@ -25,13 +25,16 @@ export default (opt = {}) => {
             let back = fn.apply(this, arg)
             if (isPromise(back)) {
               if (typeof this[opt.hookName] === 'function') {
-                if (isPromise(this[opt.hookName](back))) {
-                  opt.promise.call(this, back)
+                let hookBack = this[opt.hookName](back)
+                if (isPromise(hookBack)) {
+                  return opt.promise.call(this, back)
                 }
+                return hookBack
               } else {
-                opt.promise.call(this, back)
+                return opt.promise.call(this, back)
               }
             }
+            return back
           }
         }
       })
