@@ -1,6 +1,6 @@
 {
   "name": "vue-methods-promise",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Let Vue methods support promise",
   "main": "dist/vue-methods-promise.js",
   "scripts": {
