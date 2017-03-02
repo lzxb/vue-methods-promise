@@ -38,27 +38,30 @@ var methodsPromise = (function () {
       Object.keys(methods).forEach(function (k) {
         var fn = methods[k];
         if (typeof fn === 'function' && k !== opt.hookName) {
-          methods[k] = function () {
-            for (var _len = arguments.length, arg = Array(_len), _key = 0; _key < _len; _key++) {
-              arg[_key] = arguments[_key];
-            }
-
-            var back = fn.apply(this, arg);
-            if (isPromise(back)) {
-              if (typeof this[opt.hookName] === 'function') {
-                var hookBack = this[opt.hookName](back);
-                if (isPromise(hookBack)) {
-                  return opt.promise.call(this, back);
-                }
-                return hookBack;
-              } else {
-                return opt.promise.call(this, back);
-              }
-            }
-            return back;
-          };
+          methods[k] = hijack(fn);
         }
       });
+      function hijack(native) {
+        return function () {
+          for (var _len = arguments.length, arg = Array(_len), _key = 0; _key < _len; _key++) {
+            arg[_key] = arguments[_key];
+          }
+
+          var back = native.apply(this, arg);
+          if (isPromise(back)) {
+            if (typeof this[opt.hookName] === 'function') {
+              var hookBack = this[opt.hookName](back);
+              if (isPromise(hookBack)) {
+                return opt.promise.call(this, back);
+              }
+              return hookBack;
+            } else {
+              return opt.promise.call(this, back);
+            }
+          }
+          return back;
+        };
+      }
     }
   };
 });
