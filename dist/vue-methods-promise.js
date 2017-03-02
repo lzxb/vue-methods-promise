@@ -32,8 +32,6 @@ var methodsPromise = (function () {
 
   return {
     beforeCreate: function beforeCreate() {
-      var _this = this;
-
       var methods = this.$options.methods;
 
       if (!Object.prototype.toString.call(methods) === '[object Object]') return;
@@ -45,16 +43,16 @@ var methodsPromise = (function () {
               arg[_key] = arguments[_key];
             }
 
-            var back = fn.apply(_this, arg);
+            var back = fn.apply(this, arg);
             if (isPromise(back)) {
-              if (typeof _this[opt.hookName] === 'function') {
-                var hookBack = _this[opt.hookName](back);
+              if (typeof this[opt.hookName] === 'function') {
+                var hookBack = this[opt.hookName](back);
                 if (isPromise(hookBack)) {
-                  return opt.promise.call(_this, back);
+                  return opt.promise.call(this, back);
                 }
                 return hookBack;
               } else {
-                return opt.promise.call(_this, back);
+                return opt.promise.call(this, back);
               }
             }
             return back;

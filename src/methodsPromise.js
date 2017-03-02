@@ -21,7 +21,7 @@ export default (opt = {}) => {
       Object.keys(methods).forEach((k) => {
         let fn = methods[k]
         if (typeof fn === 'function' && k !== opt.hookName) {
-          methods[k] = (...arg) => {
+          methods[k] = function (...arg) {
             let back = fn.apply(this, arg)
             if (isPromise(back)) {
               if (typeof this[opt.hookName] === 'function') {
