@@ -20,7 +20,7 @@ test('Page introduction install', (t) => {
   })
 })
 
-test('Global hook promise', (t) => {
+test('Global hook promise', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ test('Global hook promise', (t) => {
     })
 })
 
-test('Component hook promise', (t) => {
+test('Component hook promise', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -65,7 +65,7 @@ test('Component hook promise', (t) => {
     })
 })
 
-test('Component to global hook promise', (t) => {
+test('Component to global hook promise', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -91,7 +91,7 @@ test('Component to global hook promise', (t) => {
     })
 })
 
-test('Component hook set name', (t) => {
+test('Component hook set name', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -115,7 +115,7 @@ test('Component hook set name', (t) => {
     })
 })
 
-test('Component hook not loop', (t) => {
+test('Component hook not loop', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -152,7 +152,7 @@ test('Component hook not loop', (t) => {
     })
 })
 
-test('Vue methods default return value', (t) => {
+test('Vue methods default return value', () => {
   return browser().then(({ Vue, vueMethodsPromise }) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
@@ -165,6 +165,74 @@ test('Vue methods default return value', (t) => {
         methods: {
           count () {
             return 100
+          }
+        }
+      })
+    })
+  })
+})
+
+test('Return value typeof not hook', () => {
+  return browser().then(({ Vue, vueMethodsPromise }) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve({ msg: 'Test timeout' }), 3000)
+      vueMethodsPromise(Vue, {
+        promise: (mp) => mp.then(reject)
+      })
+      return new Vue({
+        el: '#app',
+        mounted () {
+          this.null()
+          this.int()
+          this.float()
+          this.booleanTrue()
+          this.booleanFalse()
+          this.array()
+          this.function()
+          this.regExp()
+          this.object()
+          this.objectConstructors()
+          this.undefined()
+          this.arguments()
+        },
+        methods: {
+          null () {
+            return null
+          },
+          int () {
+            return 100
+          },
+          float () {
+            return 0.3
+          },
+          booleanTrue () {
+            return true
+          },
+          booleanFalse () {
+            return false
+          },
+          array () {
+            return []
+          },
+          function () {
+            return function () {}
+          },
+          regExp () {
+            return new RegExp('\\d+')
+          },
+          object () {
+            return {}
+          },
+          objectConstructors () {
+            return {
+              constructor: function Promise () {}
+            }
+          },
+          undefined () {
+            return arguments[0]
+          },
+          arguments () {
+            return arguments
           }
         }
       })
