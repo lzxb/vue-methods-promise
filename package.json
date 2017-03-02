@@ -1,8 +1,8 @@
 {
   "name": "vue-methods-promise",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Let Vue methods support promise",
-  "main": "index.js",
+  "main": "dist/vue-methods-promise.js",
   "scripts": {
     "cross-env": "node node_modules/cross-env/bin/cross-env",
     "gulp": "node node_modules/gulp/bin/gulp",
