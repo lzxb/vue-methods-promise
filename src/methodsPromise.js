@@ -1,4 +1,5 @@
 import isPromise from './isPromise'
+import isObject from './isObject'
 
 export default (opt = {}) => {
   // Configure the hook function
@@ -17,7 +18,7 @@ export default (opt = {}) => {
   return {
     beforeCreate () {
       const { methods } = this.$options
-      if (!Object.prototype.toString.call(methods) === '[object Object]') return
+      if (!isObject(methods)) return
       Object.keys(methods).forEach((k) => {
         let fn = methods[k]
         if (typeof fn === 'function' && k !== opt.hookName) {

@@ -11,8 +11,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 };
 
 function isPromise(obj) {
-  return !!obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && typeof obj.constructor === 'function' && !Object.hasOwnProperty.call(obj, 'constructor') && obj.constructor.name === 'Promise';
+  return !!obj && ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' || typeof obj === 'function') && typeof obj.constructor === 'function' && !Object.hasOwnProperty.call(obj, 'constructor') && obj.constructor.name === 'Promise';
 }
+
+var isObject = function (obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+};
 
 var methodsPromise = (function () {
   var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -34,7 +38,7 @@ var methodsPromise = (function () {
     beforeCreate: function beforeCreate() {
       var methods = this.$options.methods;
 
-      if (!Object.prototype.toString.call(methods) === '[object Object]') return;
+      if (!isObject(methods)) return;
       Object.keys(methods).forEach(function (k) {
         var fn = methods[k];
         if (typeof fn === 'function' && k !== opt.hookName) {

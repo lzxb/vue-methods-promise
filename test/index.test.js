@@ -20,7 +20,7 @@ test('Page introduction install', (t) => {
   })
 })
 
-test('Global hook promise', () => {
+test('Global hook promise call', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ test('Global hook promise', () => {
     })
 })
 
-test('Component hook promise', () => {
+test('Component hook promise call', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -65,7 +65,7 @@ test('Component hook promise', () => {
     })
 })
 
-test('Component to global hook promise', () => {
+test('Component to global hook promise call', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
@@ -172,7 +172,7 @@ test('Vue methods default return value', () => {
   })
 })
 
-test('Return value typeof not hook', () => {
+test('Return value typeof not call hook', () => {
   return browser().then(({ Vue, vueMethodsPromise }) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => resolve({ msg: 'Test timeout' }), 3000)
@@ -194,6 +194,9 @@ test('Return value typeof not hook', () => {
           this.objectConstructors()
           this.undefined()
           this.arguments()
+          this.symbol()
+          this.map()
+          this.set()
         },
         methods: {
           null () {
@@ -233,6 +236,15 @@ test('Return value typeof not hook', () => {
           },
           arguments () {
             return arguments
+          },
+          symbol () {
+            return Symbol('test')
+          },
+          map () {
+            return new Map()
+          },
+          set () {
+            return new Set()
           }
         }
       })
