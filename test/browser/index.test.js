@@ -24,7 +24,7 @@ test('Global hook promise call', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+        setTimeout(() => reject(new Error('Test timeout')), 3000)
         vueMethodsPromise(Vue, {
           promise: (mp) => mp.then(resolve)
         })
@@ -47,7 +47,7 @@ test('Component hook promise call', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+        setTimeout(() => reject(new Error('Test timeout')), 3000)
         vueMethodsPromise(Vue)
         return new Vue({
           el: '#app',
@@ -69,7 +69,7 @@ test('Component to global hook promise call', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+        setTimeout(() => reject(new Error('Test timeout')), 3000)
         vueMethodsPromise(Vue, {
           promise: (mp) => mp.then(resolve)
         })
@@ -95,7 +95,7 @@ test('Component hook set name', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+        setTimeout(() => reject(new Error('Test timeout')), 3000)
         vueMethodsPromise(Vue, {
           hookName: '$Promise'
         })
@@ -119,7 +119,7 @@ test('Component hook not loop', () => {
   return browser()
     .then(({ Vue, vueMethodsPromise }) => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+        setTimeout(() => reject(new Error('Test timeout')), 3000)
         vueMethodsPromise(Vue)
         return new Vue({
           el: '#app',
@@ -141,7 +141,7 @@ test('Component hook not loop', () => {
                 if (this.count === 1) {
                   resolve()
                 } else {
-                  reject({ msg: 'loop' })
+                  reject(new Error('Test loop'))
                 }
               }, 500)
               return mp
@@ -155,7 +155,7 @@ test('Component hook not loop', () => {
 test('Vue methods default return value', () => {
   return browser().then(({ Vue, vueMethodsPromise }) => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => reject({ msg: 'Test timeout' }), 3000)
+      setTimeout(() => reject(new Error('Test timeout')), 3000)
       vueMethodsPromise(Vue)
       return new Vue({
         el: '#app',
@@ -175,7 +175,7 @@ test('Vue methods default return value', () => {
 test('Return value typeof not call hook', () => {
   return browser().then(({ Vue, vueMethodsPromise }) => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => resolve({ msg: 'Test timeout' }), 3000)
+      setTimeout(() => resolve(new Error('Test timeout')), 3000)
       vueMethodsPromise(Vue, {
         promise: (mp) => mp.then(reject)
       })
