@@ -2,7 +2,7 @@ const gulp = require('gulp')
 const eslint = require('gulp-eslint')
 const clear = require('clear')
 const { rollup } = require('rollup')
-const babel = require('rollup-plugin-babel')
+const babel = require('rollup-plugin-babel')({ babelrc: false, presets: ['es2015-rollup'] })
 const uglify = require('rollup-plugin-uglify')
 const ava = require('gulp-ava')
 
@@ -22,7 +22,7 @@ gulp.task('lint', () => {
 gulp.task('build:dev', ['lint'], () => {
   return rollup({
     entry: 'src/index.js',
-    plugins: [babel()]
+    plugins: [babel]
   })
     .then((bundle) => {
       bundle.write({
@@ -38,7 +38,7 @@ gulp.task('build:dev', ['lint'], () => {
 gulp.task('build:prod', ['build:dev'], () => {
   return rollup({
     entry: 'src/index.js',
-    plugins: [babel(), uglify()]
+    plugins: [babel, uglify()]
   })
     .then((bundle) => {
       bundle.write({
