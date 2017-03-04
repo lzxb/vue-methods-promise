@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/lzxb/vue-methods-promise.svg?branch=master)](https://travis-ci.org/lzxb/vue-methods-promise)
 [![dependencies Status](https://david-dm.org/lzxb/vue-methods-promise/status.svg)](https://david-dm.org/lzxb/vue-methods-promise)
 [![devDependencies Status](https://david-dm.org/lzxb/vue-methods-promise/dev-status.svg)](https://david-dm.org/lzxb/vue-methods-promise?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/npm/vue-methods-promise/badge.svg)](https://snyk.io/test/npm/vue-methods-promise)
 [![npm](https://img.shields.io/npm/v/vue-methods-promise.svg?style=flat-square)](https://www.npmjs.com/package/vue-methods-promise) 
 [![npm](https://img.shields.io/npm/dt/vue-methods-promise.svg?style=flat-square)](https://www.npmjs.com/package/vue-methods-promise)
 
