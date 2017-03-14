@@ -16,6 +16,7 @@ Let Vue methods support promise
 npm install --save vue-methods-promise
 ```
 ```javascript
+// Installation
 import Vue from 'vue'
 import vueMethodsPromise from 'vue-methods-promise'
 
@@ -24,45 +25,21 @@ Vue.use(vueMethodsPromise, {
   promise: (mp) => { // Promise callback
     mp
       .catch(function (err) {
-        console.log(mp)
+        console.log(err.msg) // Test error
       })
   }
 })
-```
--  html
-```html
-  <div id="app"></div>
-  <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
-  <script src="./dist/vue-methods-promise.js"></script>
-  <script>
-    vueMethodsPromise(Vue, {
-      hookName: '$promise', // Component default hook name
-      promise: function (mp) { // Promise callback
-        mp
-          .catch(function (err) {
-            console.log(mp)
-          })
-      }
-    })
 
-    new Vue({
-      el: '#app',
-      mounted: function () {
-        this.init()
-      },
-      methods: { // 
-        init: function () {
-          return new Promise(function (resolve, reject) {
-            setTimeout(reject, 500)
-          })
-        },
-        $promise (mp) { // Optional parameters. Component hook function
-          mp.then(function () {
-            // 
-          })
-        }
-      }
-    })
+// Usage
+export default {
+  mounted () {
+    this.test()
+  },
+  methods: {
+    test () {
+      return Promise.reject(new Error({ msg: 'Test error' })) // Return Promise type
+    }
+  }
+}
 
-  </script>
 ```
