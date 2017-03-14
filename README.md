@@ -35,9 +35,9 @@ export default {
   mounted () {
     this.test()
   },
-  methods: {
+  methods: { // All return Promise type, will be dealt with
     test () {
-      return Promise.reject(new Error({ msg: 'Test error' })) // Return Promise type
+      return Promise.reject(new Error({ msg: 'Test error' }))
     }
   }
 }
