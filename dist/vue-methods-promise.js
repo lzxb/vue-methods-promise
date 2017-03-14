@@ -46,12 +46,8 @@ var methodsPromise = (function () {
         }
       });
       function hijack(native) {
-        return function () {
-          for (var _len = arguments.length, arg = Array(_len), _key = 0; _key < _len; _key++) {
-            arg[_key] = arguments[_key];
-          }
-
-          var back = native.apply(this, arg);
+        return function vueMethodsPromise() {
+          var back = native.apply(this, arguments);
           if (isPromise(back)) {
             if (typeof this[opt.hookName] === 'function') {
               var hookBack = this[opt.hookName](back);

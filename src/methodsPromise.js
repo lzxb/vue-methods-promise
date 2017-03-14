@@ -26,8 +26,8 @@ export default (opt = {}) => {
         }
       })
       function hijack (native) {
-        return function (...arg) {
-          let back = native.apply(this, arg)
+        return function vueMethodsPromise () {
+          let back = native.apply(this, arguments)
           if (isPromise(back)) {
             if (typeof this[opt.hookName] === 'function') {
               let hookBack = this[opt.hookName](back)
