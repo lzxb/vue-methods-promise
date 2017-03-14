@@ -56,11 +56,10 @@ var methodsPromise = (function () {
             if (typeof this[opt.hookName] === 'function') {
               var hookBack = this[opt.hookName](back);
               if (isPromise(hookBack)) {
-                return opt.promise.call(this, back);
+                opt.promise.call(this, back);
               }
-              return hookBack;
             } else {
-              return opt.promise.call(this, back);
+              opt.promise.call(this, back);
             }
           }
           return back;

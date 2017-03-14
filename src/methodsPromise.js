@@ -32,11 +32,10 @@ export default (opt = {}) => {
             if (typeof this[opt.hookName] === 'function') {
               let hookBack = this[opt.hookName](back)
               if (isPromise(hookBack)) {
-                return opt.promise.call(this, back)
+                opt.promise.call(this, back)
               }
-              return hookBack
             } else {
-              return opt.promise.call(this, back)
+              opt.promise.call(this, back)
             }
           }
           return back

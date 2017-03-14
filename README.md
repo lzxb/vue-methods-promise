@@ -22,7 +22,7 @@ import vueMethodsPromise from 'vue-methods-promise'
 Vue.use(vueMethodsPromise, {
   hookName: '$promise', // Component default hook name
   promise: (mp) => { // Promise callback
-    return mp // Must return
+    mp
       .catch(function (err) {
         console.log(mp)
       })
@@ -38,7 +38,7 @@ Vue.use(vueMethodsPromise, {
     vueMethodsPromise(Vue, {
       hookName: '$promise', // Component default hook name
       promise: function (mp) { // Promise callback
-        return mp // Must return
+        mp
           .catch(function (err) {
             console.log(mp)
           })
@@ -57,7 +57,7 @@ Vue.use(vueMethodsPromise, {
           })
         },
         $promise (mp) { // Optional parameters. Component hook function
-          return mp.then(function () {
+          mp.then(function () {
             // 
           })
         }
