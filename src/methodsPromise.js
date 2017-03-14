@@ -21,7 +21,7 @@ export default (opt = {}) => {
       if (!isObject(methods)) return
       Object.keys(methods).forEach((k) => {
         let fn = methods[k]
-        if (fn.__vueMethodsPromise !== true && typeof fn === 'function' && k !== opt.hookName) {
+        if (fn._vueMethodsPromise !== true && typeof fn === 'function' && k !== opt.hookName) {
           methods[k] = hijack(fn)
         }
       })
@@ -40,7 +40,7 @@ export default (opt = {}) => {
           }
           return back
         }
-        vueMethodsPromise.__vueMethodsPromise = true // 加个标记，避免重复劫持，导致栈溢出
+        vueMethodsPromise._vueMethodsPromise = true // 加个标记，避免重复劫持，导致栈溢出
         return vueMethodsPromise
       }
     }
