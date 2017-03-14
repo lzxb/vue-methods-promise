@@ -4,8 +4,8 @@
   "description": "Let Vue methods support promise",
   "main": "dist/vue-methods-promise.js",
   "scripts": {
-    "cross-env": "node node_modules/cross-env/bin/cross-env",
-    "gulp": "node node_modules/gulp/bin/gulp",
+    "cross-env": "node_modules/.bin/cross-env",
+    "gulp": "node_modules/.bin/gulp",
     "dev": "npm run gulp",
     "dist": "npm run cross-env NODE_ENV=production npm run gulp",
     "test": "npm run cross-env NODE_ENV=production npm run gulp"
