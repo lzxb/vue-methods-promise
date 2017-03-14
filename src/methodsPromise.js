@@ -1,5 +1,5 @@
-import isPromise from './isPromise'
 import isObject from './isObject'
+import hijack from './hijack'
 
 export default (opt = {}) => {
   // Configure the hook function
@@ -22,27 +22,9 @@ export default (opt = {}) => {
       Object.keys(methods).forEach((k) => {
         let fn = methods[k]
         if (fn._vueMethodsPromise !== true && typeof fn === 'function' && k !== opt.hookName) {
-          methods[k] = hijack(fn)
+          methods[k] = hijack(opt, fn)
         }
       })
-      function hijack (native) {
-        function vueMethodsPromise () {
-          let back = native.apply(this, arguments)
-          if (isPromise(back)) {
-            if (typeof this[opt.hookName] === 'function') {
-              let hookBack = this[opt.hookName](back)
-              if (isPromise(hookBack)) {
-                opt.promise.call(this, back)
-              }
-            } else {
-              opt.promise.call(this, back)
-            }
-          }
-          return back
-        }
-        vueMethodsPromise._vueMethodsPromise = true // 加个标记，避免重复劫持，导致栈溢出
-        return vueMethodsPromise
-      }
     }
   }
 }
