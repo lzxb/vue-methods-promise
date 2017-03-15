@@ -11,7 +11,6 @@ Let Vue methods support promise
 ```
 
 ### Usage
-- npm
 ```
 npm install --save vue-methods-promise
 ```
