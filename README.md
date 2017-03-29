@@ -23,6 +23,9 @@ Vue.use(vueMethodsPromise, {
   hookName: '$promise', // Component default hook name
   promise: (mp) => { // Promise callback
     mp
+      .then((function (res) {
+        console.log(res)
+      })
       .catch(function (err) {
         console.log(err.msg) // Test error
       })
